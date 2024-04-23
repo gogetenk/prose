@@ -49,3 +49,17 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+.nav-active {
+    color: rgb(17 24 39) !important;
+    background-color: rgb(243 244 246) !important;
+}
+
+.magic-text {
+    animation: background-pan-f1cebc9d 3s linear infinite;
+    background: linear-gradient(90deg,#7b1fa2,#673ab7,#f48fb1,#7b1fa2);
+    -webkit-background-clip: border-box;
+    background-size: 200%;
+    -webkit-text-fill-color: white;
+    white-space: nowrap;
+}

@@ -1,7 +1,127 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+    <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+        <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+    </div>
+    <div class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+        <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+    </div>
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <p class="text-sm leading-6 text-gray-900">
+            <strong class="font-semibold">Personality test</strong>
+            <svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg>Personnalisez votre expérience de rédaction avec notre test de personnalité.
+        </p>
+        <a href="#" class="magic-text flex rounded-full px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3 h-3 mt-1 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+            </svg>
+            Pass the test <span class="ml-3" aria-hidden="true">&rarr;</span>
+        </a>
+    </div>
+    <div class="flex flex-1 justify-end">
+        <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+            <span class="sr-only">Dismiss</span>
+            <svg class="h-5 w-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+            </svg>
+        </button>
+    </div>
+</div>
 
-<h1>Hello, world!</h1>
+<div class="flex-1 grid grid-cols-3 gap-8 p-8">
+    <section>
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full" data-v0-t="card">
+            <div class="flex flex-col space-y-1.5 p-6">
+                <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Variables</h3>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="space-y-2">
+                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                           for="title">
+                        Title
+                    </label>
+                    <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                           id="title"
+                           placeholder="Catchy title for your post" />
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                           for="hook">
+                        Hook
+                    </label>
+                    <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                           id="hook"
+                           placeholder="Interesting hook to grab attention" />
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                           for="publish-date">
+                        Publish Date
+                    </label>
+                    <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                           id="publish-date"
+                           type="date" />
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                           for="lead-magnet">
+                        Lead Magnet
+                    </label>
+                    <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                           id="lead-magnet"
+                           placeholder="Lead magnet to offer" />
+                </div>
+                <div class="space-y-2">
+                    <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                           for="length">
+                        Length
+                    </label>
+                    <button type="button"
+                            role="combobox"
+                            aria-controls="radix-:r36:"
+                            aria-expanded="false"
+                            aria-autocomplete="none"
+                            dir="ltr"
+                            data-state="closed"
+                            data-placeholder=""
+                            class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            id="length">
+                        <span style="pointer-events: none;">Select length</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="h-4 w-4 opacity-50"
+                             aria-hidden="true">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="items-center p-6 flex justify-end">
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-black text-white hover:bg-primary/90 h-10 px-4 py-2">
+                    Generate
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="flex flex-col col-span-2 justify-center items-center bg-gray-100 rounded-lg shadow-sm">
+        <div class="w-4/5 p-4 text-left space-y-2">
+            <h1 class="text-xl font-bold">AI Generated Social Post</h1>
+            <p class="text-gray-500">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum
+                tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum.
+            </p>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-black hover:bg-primary/90 h-10 px-4 py-2 mt-4">
+                Edit Post
+            </button>
+        </div>
+    </section>
 
-Welcome to your new app.
+</div>

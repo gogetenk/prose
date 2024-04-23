@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34707.107
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processia.Prose.AppHost", "Processia.Prose.AppHost\Processia.Prose.AppHost.csproj", "{4172268C-875C-4492-9894-6F15C45534B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processia.Prose.AppHost", "Processia.Prose.AppHost\Processia.Prose.AppHost.csproj", "{4172268C-875C-4492-9894-6F15C45534B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processia.Prose.ServiceDefaults", "Processia.Prose.ServiceDefaults\Processia.Prose.ServiceDefaults.csproj", "{36CD3DD8-C9FF-466D-B0B7-294F96D5D268}"
 EndProject
@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Back", "Back", "{D07A6AB2-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Front", "Front", "{9168B1C7-1651-4FB7-83E1-DB08EBD58B43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processia.Prose.Application", "Processia.Prose.Application\Processia.Prose.Application.csproj", "{0F4BF07C-8F1D-4D29-B2C1-27B25CD49F77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processia.Prose.Application", "Processia.Prose.Application\Processia.Prose.Application.csproj", "{0F4BF07C-8F1D-4D29-B2C1-27B25CD49F77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processia.Prose.Infrastructure", "Processia.Prose.Infrastructure\Processia.Prose.Infrastructure.csproj", "{2F32CFE3-914E-401A-9542-A8418065B050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processia.Prose.Infrastructure", "Processia.Prose.Infrastructure\Processia.Prose.Infrastructure.csproj", "{2F32CFE3-914E-401A-9542-A8418065B050}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Processia.Prose.WebApp", "Processia.Prose.WebApp\Processia.Prose.WebApp\Processia.Prose.WebApp.csproj", "{D4DF7B76-7204-4284-A89D-11D3CEE9F652}"
 EndProject
