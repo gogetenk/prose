@@ -1,0 +1,130 @@
+﻿@using System.Security.Claims
+@rendermode InteractiveAuto
+
+<header class="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6">
+    <a class="lg:hidden" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="24"
+             height="24"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             class="h-6 w-6">
+            <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path>
+            <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path>
+            <path d="M12 3v6"></path>
+        </svg>
+        <span class="sr-only">Home</span>
+    </a>
+    <div class="w-full flex-1">
+        <form>
+            <div class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="24"
+                     height="24"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="absolute left-2.5 top-3 h-4 w-4 text-gray-500 dark:text-gray-400">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </svg>
+                <input class="flex h-10 rounded-md border border-input px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3"
+                       type="search"
+                       placeholder="Search posts..." />
+            </div>
+        </form>
+    </div>
+    @*   <div class="top-row px-4">
+    <Login />
+    </div> *@
+    <div class="hidden lg:ml-4 lg:block">
+        <div class="flex items-center">
+            <button type="button" class="flex-shrink-0 rounded-full p-1 text-gray-500 hover:text-indigo-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600">
+                <span class="sr-only">View notifications</span>
+                <!-- Heroicon name: outline/bell -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                </svg>
+            </button>
+
+            <!-- Profile dropdown -->
+            <div class="relative ml-3 flex-shrink-0">
+                <div>
+                    <button type="button" @onclick="OpenProfileDropdown" @onfocusout="async () => { await Task.Delay(100); CloseDropDown();}" class="flex rounded-full bg-gray-600 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="h-8 w-8 rounded-full" src="@_profilePic" alt="">
+                    </button>
+                </div>
+
+                <!--
+                  Dropdown menu, show/hide based on menu state.
+
+                  Entering: "transition ease-out duration-100"
+                    From: "transform opacity-0 scale-95"
+                    To: "transform opacity-100 scale-100"
+                  Leaving: "transition ease-in duration-75"
+                    From: "transform opacity-100 scale-100"
+                    To: "transform opacity-0 scale-95"
+                -->
+                <div class="@_currentProfileDropDownClasses absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                    <!-- Active: "bg-gray-100", Not Active: "" -->
+                    <NavLink href="settings/profile" class="block py-2 px-4 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</NavLink>
+                    <a href="Account/Logout" class="block py-2 px-4 text-sm text-gray-700 hover:text-indigo-500" role="menuitem" tabindex="-1" id="user-menu-item-2">Log out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+@code {
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+    private ClaimsPrincipal _currentUser;
+    private string _profilePic;
+    private bool _isDropDownOpened = false;
+    private string _currentProfileDropDownClasses = "hidden opacity-0";
+    private string _dashboardItemTitle = "Dashboard";
+
+    private static string _OpenedProfileDropDownClasses = "transition ease-out duration-100 transform opacity-100 scale-100";
+    private static string _ClosedProfileDropDownClasses = "hidden transition ease-in duration-75 transform opacity-0 scale-95";
+
+    protected async override Task OnInitializedAsync()
+    {
+        var state = await authenticationState;
+        _currentUser = state.User;
+        _profilePic = _currentUser?.FindFirst(x => x?.Type == "picture")?.Value!;
+    }
+
+    protected void OpenProfileDropdown(MouseEventArgs args)
+    {
+        if (_isDropDownOpened)
+        {
+            CloseDropDown();
+        }
+        else
+        {
+            OpenDropDown();
+        }
+    }
+
+    private void CloseDropDown()
+    {
+        _currentProfileDropDownClasses = _ClosedProfileDropDownClasses;
+        _isDropDownOpened = false;
+    }
+
+    private void OpenDropDown()
+    {
+        _currentProfileDropDownClasses = _OpenedProfileDropDownClasses;
+        _isDropDownOpened = true;
+    }
+}

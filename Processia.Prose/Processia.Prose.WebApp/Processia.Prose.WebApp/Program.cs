@@ -2,8 +2,13 @@ using Auth0.AspNetCore.Authentication;
 using Processia.Prose.WebApp.Components;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Components.Authorization;
+using Processia.Prose.WebApp.AuthenticationStateSyncer;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
 
 builder.AddServiceDefaults();
 
