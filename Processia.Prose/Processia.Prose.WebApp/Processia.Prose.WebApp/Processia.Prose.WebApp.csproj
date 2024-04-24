@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Processia.Prose.ServiceDefaults\Processia.Prose.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Processia.Prose.WebApp.Client\Processia.Prose.WebApp.Client.csproj" />
+    <PackageReference Include="Auth0.AspNetCore.Authentication" Version="1.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.3" />
   </ItemGroup>
 

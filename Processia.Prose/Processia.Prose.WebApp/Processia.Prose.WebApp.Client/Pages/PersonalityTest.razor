@@ -1,9 +1,23 @@
 ﻿@page "/test"
-<!--
-// v0 by Vercel.
-// https://v0.dev/t/bLikxCI3xo8
--->
+@attribute [Authorize]
+@rendermode InteractiveAuto
 
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private string Username = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var state = await authenticationState;
+            Username = state?.User?.Identity?.Name ?? string.Empty;
+        }
+        await base.OnInitializedAsync();
+    }
+}
 <style>
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Inter', sans-serif;
@@ -32,7 +46,7 @@
         <div class="rounded-lg border bg-card text-card-foreground shadow-sm max-w-lg w-full" data-v0-t="card">
             <div class="flex flex-col space-y-1.5 p-6">
                 <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
-                    What is your preferred working style?
+                    @Username, what is your preferred working style?
                 </h3>
             </div>
             <div class="p-6 space-y-4">

@@ -1,9 +1,18 @@
-using Processia.Prose.WebApp.Client.Pages;
+using Auth0.AspNetCore.Authentication;
 using Processia.Prose.WebApp.Components;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+
+builder.Services
+    .AddAuth0WebAppAuthentication(options =>
+    {
+        options.Domain = builder.Configuration["Auth0:Domain"];
+        options.ClientId = builder.Configuration["Auth0:ClientId"];
+    });
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -31,9 +40,33 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
+SetupAuthenticationEndpoints(app);
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Processia.Prose.WebApp.Client._Imports).Assembly);
 
 app.Run();
+
+static void SetupAuthenticationEndpoints(WebApplication app)
+{
+    app.MapGet("/Account/Login", async (HttpContext httpContext, string redirectUri = "/") =>
+    {
+        var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
+                .WithRedirectUri(redirectUri)
+                .Build();
+
+        await httpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
+    });
+
+    app.MapGet("/Account/Logout", async (HttpContext httpContext, string redirectUri = "/") =>
+    {
+        var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
+                .WithRedirectUri(redirectUri)
+                .Build();
+
+        await httpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
+        await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    });
+}
