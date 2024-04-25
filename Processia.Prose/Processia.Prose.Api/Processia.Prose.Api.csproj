@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Processia.Prose.Application\Processia.Prose.Application.csproj" />
+    <ProjectReference Include="..\Processia.Prose.Infrastructure\Processia.Prose.Infrastructure.csproj" />
     <ProjectReference Include="..\Processia.Prose.ServiceDefaults\Processia.Prose.ServiceDefaults.csproj" />
   </ItemGroup>
 
