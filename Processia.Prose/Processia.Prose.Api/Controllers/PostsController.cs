@@ -1,9 +1,10 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Processia.Prose.Application.Domain.ValueObjects;
 using Processia.Prose.Application.UseCases.Posts.Commands;
 
-//namespace Processia.Prose.Api.Controllers;
+namespace Processia.Prose.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -23,23 +24,23 @@ public class PostsController : ControllerBase
         return CreatedAtAction(nameof(CreatePost), result);
     }
 
-//    [HttpPost("generate")]
-//    public async Task<ActionResult<GeneratePostResponseDto>> GeneratePost(GeneratePostRequestDto dto)
-//    {
-//        var command = new GeneratePostCommand(dto.UserId, dto.Title, dto.Hook, dto.PublishDate, dto.LeadMagnet, (PostLength)dto.Length, dto.PersonalityType);
-//        var result = await _mediator.Send(command);
-//        return Ok(new GeneratePostResponseDto(result.Content));
-//    }
+    [HttpPost("generate")]
+    public async Task<ActionResult<GeneratePostResponseDto>> GeneratePost(GeneratePostRequestDto dto)
+    {
+        var command = new GeneratePostCommand(dto.UserId, dto.Title, dto.Hook, dto.PublishDate, dto.LeadMagnet, (PostLength)dto.Length, dto.PersonalityType);
+        var result = await _mediator.Send(command);
+        return Ok(new GeneratePostResponseDto(result.Content));
+    }
 
-//}
+}
 
 public record GeneratePostRequestDto(Guid UserId, string Title, string Hook, DateTime PublishDate, string LeadMagnet, PostLengthDto Length, string PersonalityType);
 
-//public record GeneratePostResponseDto(string Content);
+public record GeneratePostResponseDto(string Content);
 
-//public enum PostLengthDto
-//{
-//    Short,
-//    Medium,
-//    Long
-//}
+public enum PostLengthDto
+{
+    Short,
+    Medium,
+    Long
+}
